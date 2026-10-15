@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>UNILAG Foundation CBT Practice</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#eef2f7;--card:#fff;--tx:#1a2233;--mut:#5b6678;--pri:#0b4f9c;--bd:#cfd8e6;--ok:#1b8a3a;--no:#c62828;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1624;--card:#18233a;--tx:#e8edf7;--mut:#9aa7bf;--pri:#5aa2ff;--bd:#2c3b58;--ok:#4cc37a;--no:#ff7b7b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1624;--card:#18233a;--tx:#e8edf7;--mut:#9aa7bf;--pri:#5aa2ff;--bd:#2c3b58;--ok:#4cc37a;--no:#ff7b7b;color-scheme:dark}
+html,body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,Arial,sans-serif}
+*{box-sizing:border-box}
+header{background:#0b4f9c;color:#fff;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+header b{font-size:15px}#timer{font:700 20px monospace;background:#fff;color:#0b4f9c;padding:4px 10px;border-radius:6px}#timer.low{color:#c62828}
+main{max-width:820px;margin:0 auto;padding:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px;margin-bottom:12px}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:8px;padding:10px 18px;font-weight:600}.btn.g{background:transparent;color:var(--pri);border:1px solid var(--pri)}.btn.r{background:#c62828}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px}.tabs button{white-space:nowrap;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:20px;padding:6px 12px}.tabs button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.opt{display:block;width:100%;text-align:left;background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:8px;padding:11px;margin:8px 0}.opt.sel{border-color:var(--pri);background:rgba(11,79,156,.12);font-weight:600}
+.opt.ok{border-color:var(--ok);background:rgba(27,138,58,.15)}.opt.bad{border-color:var(--no);background:rgba(198,40,40,.15)}
+.pal{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px}.pal button{padding:8px 0;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:6px}.pal .an{background:var(--ok);color:#fff;border-color:var(--ok)}.pal .cu{outline:2px solid var(--pri)}
+.nav{display:flex;justify-content:space-between;gap:8px;margin:10px 0}
+input{font:inherit;width:100%;padding:10px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx)}
+.big{font-size:44px;font-weight:800;color:var(--pri)}.mut{color:var(--mut);font-size:14px}.q{font-size:17px;line-height:1.5}
+</style></head><body>
+<header><b>UNILAG FOUNDATION CBT</b><span id="timer" hidden></span></header>
+<main id="app"></main>
+<script>
+const Q={
+Mathematics:[
+["Find the coefficient of the 3rd term in the expansion of (x² − 3)⁵",["60","70","80","90"],3],
+["If the 7th term of an A.P. is twice the 3rd term and the sum of the first four terms is 42, find the common difference.",["1","2","3","6"],2],
+["In a class of 10 students there are 4 girls and 6 boys. In how many ways can a selection of 3 girls and 1 boy be made?",["30","12","18","24"],3],
+["Four members of a first eleven football team are also members of the first fourteen rugby team. How many boys play for at least one of the two teams?",["25","21","16","3"],1],
+["Find the number of ways the letters of the word MARRY can be arranged if the Rs must not come together.",["36","48","60","72"],0],
+["Determine the value of C so that x² + y² − 8x + 10y + C = 0 is the equation of a circle whose radius is 7.",["5","8","−5","−8"],3],
+["Given f(x) = x³ + 2x² − 5x − 6, find the zeros of f(x).",["−1, −2 and 3","−1, −3 and 2","−2, 1 and 3","−1, 2 and 3"],1],
+["The sum of the first n terms of a series is Sn = 3n² + 5n − 7. Find its 7th term.",["40","44","46","48"],1],
+["U = {1, 2, …, 12}, A = {multiples of 4 between 1 and 12}, B = {factors of 12}. Determine A ∩ B′.",["{8}","{4, 8, 12}","{8, 12}","{1, 4, 8}"],0],
+["Solve for x: 2²ˣ − 6(2ˣ) + 8 = 0",["1 or 2","0","−2 or 1","1"],0],
+["The minimum value of x² − 3x + 2 for all real values of x is",["−¼","½","¼","−3/2"],0],
+["In how many ways can a committee of 6 be chosen from 7 men and 5 women so that it contains 3 men and 3 women?",["720","850","350","240"],2],
+["The quantity (x + 1) is a factor of x³ − 4x² + Cx + D and when x = −2 the value of the expression is 1. Find C and D.",["C=4, D=9","C=−4, D=−9","C=−20, D=−15","C=20, D=15"],2],
+["Find A if (x − 3)/((1 − x)(x + 2)) = A/(1 − x) + B/(x + 2)",["−1","5/3","−2/3","1/3"],2],
+["The cell centre received its highest number of enquiries between 3pm and 4pm, which was 40% more than the 250 enquiries it received between 2pm and 3pm. How many calls did it receive between 3pm and 4pm?",["450","650","350","250"],2],
+["A number of oranges were shared among Ayo, Olu and Dada in the ratio 3:5:6 respectively. How many were shared if Olu received 15?",["36","40","42","48"],2],
+["If 5 bags of grains can feed 50 chickens in 12 weeks, how many bags will feed 75 chickens in 12 weeks?",["3.5 bags","5.5 bags","7.5 bags","10.5 bags"],2],
+["What is the greatest possible area of a triangle with one side of length 7 and another side of length 10?",["17","34","35","70"],2],
+["Mal is one-and-a-half times as old as Sal, and Sal is one-and-a-half times as old as Al. How old are Al, Sal and Mal if their combined ages total 114?",["45, 23, 16","32, 33, 34","34, 35, 36","24, 36, 54"],3],
+["Which equation is satisfied by the pairs (−2, −3), (0, 3), (1, 6), (2, 9), (4, 15)?",["y = x³ + 3","y = 3x + 3","y = −3x + 6","y = x² + 6"],1],
+["The volume of a right circular cone A of height 12 cm is 330 cm³. Find the volume of another cone B with the same base diameter, but of height 20 cm.",["550 cm³","660 cm³","880 cm³","990 cm³"],0],
+["The ages of three men are in the ratio 3:4:5. If the difference between the oldest and the youngest is 18 years, what is the sum of their ages?",["96","108","84","174"],1],
+["Jack is three times as old as Jill, but in three years' time he will only be twice as old. How old are Jack and Jill now?",["9 & 3","9 & 12","4 & 5","11 & 15"],0],
+["What is the median of {1, 6, 3, 9, 16, 11, 2, 9, 5, 7, 12, 13, 8}?",["7","8","9","11"],1],
+["What is the slope of the line that is perpendicular to y − 2x = 1?",["2","−2","½","−½"],3],
+["What is the sum of the first 40 even positive integers?",["1,600","1,560","820","1,640"],3],
+["Find the value of x if 4 log x + 5 log x − 7 log x = log 16",["2","4","8","16"],1],
+["X sold a radio set to Y at a profit of 10% and Y sold it for ₦2,612.50 at a loss of 5%. The cost of the radio to X was",["₦2,500","₦2,488","₦2,375","₦2,272"],0],
+["The minimum point on the curve y = x² − 4x + 3 is",["(2, −1)","(0, 3)","(1, 0)","(2, −4)"],0],
+["If 263 + 441 = 714, what number base was used?",["12","11","10","9"],3],
+["Solve the simultaneous equations 4x − 3 = 3x + y = 2y + 5x − 12",["x = 5, y = 2","x = 2, y = 5","x = −2, y = −5","x = 5, y = −2"],0],
+["A bag contains 4 white balls and 6 red balls. Two balls are taken without replacement. What is the probability that both are red?",["1/5","1/3","2/15","2/9"],1],
+["Find the roots of the equation 10x² − 13x − 3 = 0",["3/4 or −1/2","3/10 or −1","−3/10 or 1","−1/5 or 3/2"],3],
+["The second and fifth terms of a geometric progression are 6 and −48 respectively. The first term is",["−3","3","12","−12"],0],
+["Find the range of values for which y = 2x² + 9x − 35 is less than 0.",["−7 < x < 5/2","−7 < x < 5","−5 < x < 7","−7/2 < x < 5"],0],
+["Calculate the curved surface area of a cone of base diameter 14 cm and height 24 cm.",["500 cm²","550 cm²","650 cm²","600 cm²"],1],
+["A rectangular picture 7 cm by 9 cm is enclosed by a frame ½ cm wide. Calculate the area of the frame.",["15 cm²","13 cm²","17 cm²","16 cm²"],2],
+["A number is selected at random between 10 and 20, both inclusive. Find the probability that it is a prime.",["3/11","4/11","5/11","½"],1],
+["Find the mean deviation of 6, 5, 9, 10.",["3","2","4","5"],1],
+["Solve the inequality 3m + 3 > 9.",["m > 2","m > 3","m < 4","m > 6"],0],
+["30 boys and x girls sat for a test. The mean scores of the boys and the girls were 6 and 8 respectively. If the total score was 468, find x.",["38","24","36","22"],2],
+["The probability that Toju watches TV is 2/3 and the probability that he reads a book is 1/4. What is the probability that he watches TV and does not read a book?",["1/4","5/12","1/2","1/8"],2],
+["An arithmetic progression has first term 11 and fourth term 32. Find the sum of the first eight terms.",["253","284","251","315"],1],
+["12 men complete a job in 9 days. How many men working at the same rate would be required to complete the job in 6 days?",["8","9","12","18"],3],
+["The mean of twelve positive numbers is 3. When another number is added, the mean becomes 5. Find the 13th number.",["29","26","25","24"],0],
+["A stick 2.4 cm long is measured as 2.5 cm. Find the percentage error.",["4%","4.17%","6.25%","2%"],1],
+["One bag contains 4 white and 2 black balls. Another contains 3 white and 5 black balls. If one ball is drawn from each bag, what is the probability that both are white?",["2/3","3/8","7/24","1/4"],3],
+["Chief Sam gave 1/2 of his savings to his first son, 1/3 of the remaining to his second son, 2/3 of the remaining to his daughter and the rest, ₦1,000, to his wife. How much did his first son receive?",["₦2,250","₦3,550","₦4,500","₦6,250"],2],
+["A car painter charges ₦40.00 per day for himself and ₦10.00 for his assistant. If a fleet of cars were painted for ₦2,000.00, how much did the assistant receive?",["₦400","₦320","₦420","₦1,680"],0],
+["X is directly proportional to Y and inversely proportional to Z. If X = 12 when Y = 24 and Z = 8, what is X when Y = 10 and Z = 5?",["11","8","10½","2½"],1],
+["Fifteen boys and x girls took an examination. The mean scores of the boys and girls were 16 and 18 respectively. If the total score of all candidates was 474, find x.",["12","13","14","16"],1]],
+English:[
+["Choose the word nearest in meaning to ABUNDANT.",["Scarce","Plentiful","Rare","Tiny"],1],
+["Choose the word opposite in meaning to ANCIENT.",["Old","Historic","Modern","Antique"],2],
+["Neither of the boys ___ present at the meeting.",["were","are","was","have been"],2],
+["Choose the correct plural of CRISIS.",["crisises","crises","crisis","crisees"],1],
+["The idiom 'to let the cat out of the bag' means to",["free an animal","reveal a secret","make a mistake","cause trouble"],1],
+["Choose the correctly spelt word.",["Accomodation","Acommodation","Accommodation","Acomodation"],2],
+["He is very good ___ Mathematics.",["in","at","on","for"],1],
+["She ___ to school every day.",["go","going","goes","gone"],2],
+["Choose the word that rhymes with RISEN.",["Rising","Prison","Step-son","Motion"],1],
+["Choose the word that rhymes with COURT.",["Cut","Pot","Hurt","Sought"],3],
+["Choose the word that rhymes with CROWD.",["Crawl","Crow","Aloud","Bard"],2],
+["Choose the word that rhymes with KEY.",["Quay","Kill","May","Coy"],0],
+["Everyone must be ___ bed by 9.00 p.m.",["over","inside","on","in"],3],
+["Tunde was told not to allow pleasure to interfere ___ his duty.",["on","over","with","beside"],2],
+["He sent a card to his parents to congratulate them ___ their diamond wedding anniversary.",["over","on","in","about"],1],
+["If you want to succeed in life, you will have to shake ___ your lazy habits.",["against","if","over","off"],3],
+["Hardly had we arrived ___ he left.",["so","when","than","that"],1],
+["It is high time you ___ smoking.",["stopped","should stop","must stop","stop"],0],
+["The office ___ he works is fully air-conditioned.",["in which","by which","where","that"],2],
+["I do not like to flatter people but I must confess that Bisi is ___ beautiful girl in the school.",["a","a more","very","the most"],3],
+["He would have won the race ___.",["only he could run fast","if he had run faster","if he can run faster","although he ran faster"],1],
+["Neither Azeez nor Muda ___ at home when Isaac arrived.",["was","were","are","is"],0],
+["Both Nweke and Ife promised to attend the party but ___ of them came.",["either","all","no person","neither"],3],
+["He has stopped drinking, ___?",["dos he","hasn't he","doesn't he","did he"],1],
+["___ of what he said was nonsense.",["Much","Few","Little","Many"],0],
+["If it ___ rained, I would have completed the work.",["has","had","hasn't","hadn't"],3],
+["Though we are friends, I ___.",["lent her some money","refused to lend her any money","will lend her some money","am lending her the money"],1],
+["You should take good care of your car ___ buy another one.",["for you may not be able to","suppose you cannot","due to the fact that you cannot","otherwise you cannot"],3],
+["He ___ the book to the library last week.",["has returned","had returned","was returning","returned"],3],
+["The poor ___ our attention and kindness.",["does deserve","do deserve","deserve","deserves"],2],
+["They examined every shred of evidence but could not find any smoking ___.",["paper","house","gun","cigarette"],2],
+["Choose the grammatical name of the sentence: 'Return my computer at once!'",["Simple sentence","Compound sentence","Complex sentence","Imperative sentence"],3],
+["Choose the option that describes the word pair: tear / rip",["similar","opposites","verb / noun","present / past tense"],0],
+["'You need to be in top form to boost your image.' 'In top form' means",["very rich","very fashionable","in good physical condition","be of good temper"],2],
+["To leave home penniless is ___ foolishness.",["shear","share","sheer","cheer"],2],
+["The dutiful dog followed Julian wherever he went. The underlined clause is",["an adverbial clause of place","an adverbial clause of manner","an adverbial clause of time","an adverbial clause of condition"],0],
+["From the words lettered A to D, choose the one with the correct stress: RECUPERATE",["recuperate","re'cuperate","recu'perate","recupe'rate"],2],
+["For taking part in the unsuccessful ___ the mutineers were court-martialed.",["coopes","coupes","coupe","coup"],3],
+["The old man could be nasty and vindictive when drunk. Choose the opposite of VINDICTIVE.",["Spiteful","Angry","Forgiving","Humorous"],2],
+["Choose the wrongly spelt word.",["disappointed","embarassed","equipped","rhythm"],1],
+["Choose the wrongly spelt word.",["quite","beleive","proceed","opportunity"],1],
+["Had she known he was a highway robber, she would not have married him. This means",["she married him before she knew he was a robber","she knew he was a robber when she married him","she did not marry him because she was a robber","she refused to marry the man when he was a robber"],0],
+["It is sheer fantasy to believe that there could never be a miscalculation. FANTASY here means",["dream","home","nonsense","joke"],0],
+["The ingenious scheme of the robber broke down. INGENIOUS here means",["suspicious","ambitious","deceitful","clever"],3],
+["Choose the option that has the same sound as the underlined letters in PLOUGH.",["now","through","soul","though"],0]],
+Chemistry:[
+["Chromium has four stable isotopes: 4.31% Cr-50, 83.76% Cr-52, 9.55% Cr-53 and 2.38% Cr-54. Calculate the relative atomic mass of chromium.",["52.5","52.3","52.1","52.2"],2],
+["Fe + S → FeS. Calculate the mass of iron sulphide formed when 5.6 g of iron combines with 3.2 g of sulphur. (Fe = 56, S = 32)",["5.6 g","8.8 g","2.4 g","3.2 g"],1],
+["What is the molarity of the solution formed by dissolving 10 g of NaOH in 500 cm³ of water? (Na=23, O=16, H=1)",["1.00","0.25","0.50","2.00"],2],
+["0.145 g of a gas has a volume of 60 cm³. What is its molar mass? (1 mol gas = 24 dm³ at STP)",["116","58","29","30"],1],
+["How many atoms are there in 0.44 g of carbon(IV) oxide, CO₂?",["1.8 × 10²²","2.0 × 10²³","3.6 × 10²³","1.8 × 10²⁴"],0],
+["50 cm³ of hydrogen are sparked with 20 cm³ of oxygen at 100 °C and 1 atm. The total volume of the residual gases is",["50 cm³","10 cm³","40 cm³","30 cm³"],0],
+["A compound contains 38.7% C, 9.7% H and 51.6% O. Its molar mass is 62.1 g. What is the molecular formula?",["C₄H₃O₂","CH₃O","C₂H₅O","C₂H₆O₂"],3],
+["The Mass Number of an element is",["the sum of the protons and neutrons in the nucleus","the number of neutrons in the nucleus","the number of protons in the nucleus","the number of electrons in the outer shell"],0],
+["When ammonium nitrate is added to water, an endothermic reaction occurs and",["the surroundings get hotter","heat is given out","the temperature rises","the temperature falls"],3],
+["If the abundance of ⁶Li (6.015121 amu) is 7.500% and ⁷Li (7.016003 amu) is 92.500%, what is the average atomic mass?",["6.0750 amu","6.0902 amu","9.2500 amu","6.9409 amu"],3],
+["Phenolphthalein in acid solution is",["colourless","yellow","red","pink"],0],
+["A compound of iron contains 72.36% iron and 27.64% oxygen. Determine its empirical formula. (Fe=56, O=16)",["FeO","Fe₂O₃","Fe₃O₄","Fe₂O₂"],2],
+["Given that Fe = 56 and O = 16, how many moles of iron(III) oxide are in 1 kg of the compound?",["12.5 moles","0.625 moles","25 moles","6.25 moles"],3],
+["The densities of two gases X and Y are 2.5 g/dm³ and 10.0 g/dm³ respectively. What is the rate of diffusion of X relative to Y?",["1 : 2.2","2.5 : 1","1 : 2","2 : 1"],3],
+["A gas X diffuses twice as fast as gas Y under the same conditions. If the relative molecular mass of X is 28, calculate that of Y.",["120","14","56","112"],3],
+["Which of the following is an acidic salt?",["NaHSO₄","Na₂SO₄","CH₃CO₂Na","Na₂S"],0],
+["Bronze is an alloy of",["copper, zinc and nickel","aluminium and copper","copper and zinc","tin and zinc","tin and copper"],4],
+["A gas of initial volume 2.5 dm³ is heated at constant pressure to 7.5 dm³. What is the ratio of the final temperature to the initial absolute temperature?",["3 : 1","1 : 3","2 : 5","5 : 2"],0],
+["Petrol can be obtained from diesel by",["distillation","cracking","polymerization","dehydrogenation"],1],
+["Vegetable oils are converted into margarine by",["saponification","esterification","hydrogenation","polymerization"],2],
+["What is the name given to the hydrolysis of fat and oil using sodium hydroxide?",["Esterification","Saponification","Hydrogenation","Dehydrogenation"],1],
+["Which of the following reactions will liberate ethene?",["C₂H₅OH + HCOOH + heat","C₂H₅OH + conc. H₂SO₄ + heat","C₂H₅OH + sodium ethanoate","C₂H₅OH + dilute H₂SO₄ at room temperature"],1]],
+Physics:[
+["Which list contains only electrical insulators?",["glass, plastic, rubber","glass, plastic, steel","glass, rubber, steel","plastic, rubber, steel"],0],
+["If no force is applied to a moving object, it will stop due to",["gravity","backward force","magnetic force","friction"],3],
+["How long is a train that passes a signal in twenty seconds at a speed of 108 km/h?",["405 m","480 m","520 m","600 m"],3],
+["A 1.0 m length of wire of cross-sectional area 0.40 mm² has a resistance of 2.0 Ω. What is the resistance of a 0.50 m length of wire of the same material with cross-sectional area 0.80 mm²?",["0.5 Ω","1.0 Ω","4.0 Ω","8.0 Ω"],0],
+["A stone has a mass of 390 g and a density of 2.7 g/cm³. Cooking oil has a density of 0.90 g/cm³. Which mass of oil has the same volume as the stone?",["130 g","160 g","900 g","1200 g"],0],
+["A radioactive element has an initial count rate of 1200 cpm which falls to 150 cpm in 15 hrs. Calculate the half-life.",["5 hrs","10 hrs","2 hrs","7 hrs"],0],
+["Energy possessed by a body in motion is called",["kinetic energy","potential energy","both A and B","none of these"],0],
+["Which wave property has the same value for all X-rays travelling in air?",["amplitude","frequency","speed","wavelength"],2],
+["Electromagnetic waves carry",["a positive charge","a negative charge","no charge","both positive and negative charge"],2],
+["A student wants the circumference of a golf ball. Which instrument gives a reading that is the circumference directly?",["calipers","micrometer","rule","tape"],3],
+["What is a suitable metal for the core of an electromagnet?",["aluminium","copper","iron","steel"],2],
+["A 1.0 Ω resistor and a 2.0 Ω resistor are connected in series across a 12 V d.c. supply. What is the current in the circuit?",["0.25 A","4.0 A","6.0 A","12 A"],1],
+["A 6 V cell is connected to a 3 Ω resistor. How much charge flows through the resistor in 2 minutes?",["4 C","9 C","240 C","360 C"],2],
+["A 60-watt light bulb carried a current of 0.5 A. The total charge passing through it in one hour is",["1800 C","3600 C","7200 C","2400 C"],0],
+["A 10 g mass placed on a spring balance (spring constant 1.33 N/m) causes the same spring balance extension of (g = 10 m/s²)",["2.3 cm","6.5 cm","7.5 cm","16.8 cm"],2],
+["A 2F and a 1F capacitor are connected in series and a potential difference is applied across the combination. The 2F capacitor has",["twice the charge of the 1F capacitor","half the charge of the 1F capacitor","twice the potential difference of the 1F capacitor","half the potential difference of the 1F capacitor"],3],
+["A 2F and a 1F capacitor are connected in parallel and a potential difference is applied across the combination. The 2F capacitor has",["twice the charge of the 1F capacitor","half the charge of the 1F capacitor","twice the potential difference of the 1F capacitor","half the potential difference of the 1F capacitor"],0],
+["Sinusoidal water waves travel at 20 cm/s and their adjacent crests are 5.0 cm apart. The time required for each new whole cycle to be generated is",["100 s","4.0 s","2.0 s","0.25 s"],3],
+["A 60 W filament lamp has a resistance of 735 Ω. What is the main voltage for which the lamp is best?",["110 V","210 V","220 V","230 V"],1],
+["A 800 W electric toaster has been used for 12 hours in a month at a cost of $0.20 per kWh. What is the cost of the electrical energy used?",["$1.60","$1.92","$13.33","$19.20"],1],
+["If p is the momentum of an object, the expression p²/m has the same units as",["acceleration","energy","force","impulse","power"],1],
+["A 20 kg box on a horizontal surface is pulled by a horizontal force of 5.0 N. A frictional force of 3.0 N retards the motion. What is the acceleration of the object?",["1.0 m/s²","40 m/s²","2.0 m/s²","0.1 m/s²"],3],
+["A spring with constant 20 N/m is to be compressed by 0.10 m. What is the maximum force required?",["2.0 N","20.0 N","200.0 N","2.5 N"],0],
+["A 1500 kg car accelerates from 0 to 25 m/s in 7.0 s. What is the average power delivered to the car by the engine?",["90 W","9.0 W","6.7 × 10⁴ W","175 W"],2],
+["The tensile stress on a wire is 2.5 × 10⁹ N/m² and the tensile strain is 0.5. What is the Young's modulus of the wire?",["5.0 × 10¹⁰ N/m²","5.0 × 10⁹ N/m²","1.25 × 10⁹ N/m²","125 × 10¹⁰ N/m²"],1],
+["A wave propagated by vibrations in the same direction as the motion of the wave is known as",["transverse wave","stationary wave","electromagnetic wave","longitudinal wave"],3],
+["The period of a wave is 0.02 s. If its speed is 330 m/s, the wavelength will be",["4.0 m","5.0 m","6.6 m","2.0 m"],2],
+["A note of frequency 2000 Hz has a velocity of 400 m/s. The wavelength of the note is",["200.0 m","2.0 m","0.2 m","800.0 m"],2],
+["A light wave travels from air into a medium of refractive index 1.54. If the wavelength of the light in air is 5.9 × 10⁻⁷ m, what is its wavelength in the medium?",["2.5 × 10⁻⁷ m","3.8 × 10⁻⁷ m","5.2 × 10⁻⁷ m","6.1 × 10⁻⁷ m"],1],
+["A sound note of frequency 250 Hz and wavelength 1.3 m is produced near a hill. If the echo is received 1 second later, how far away is the hill?",["131.3 m","162.5 m","248.7 m","251.3 m"],1],
+["Which of the following is a wind instrument?",["Violin","Guitar","Piano","Organ"],3],
+["A spring makes 12 vibrations in 40 seconds. Find the frequency of the vibration.",["0.24 Hz","0.3 Hz","0.45 Hz","0.6 Hz"],1],
+["A stone at the bottom of a pool appears 4.5 m below the surface. If the refractive index of water is 1.33, the depth of the pool is",["5.98 m","6.10 m","6.20 m","7 m"],0],
+["A man 2 m tall has a blood density of 8.25 × 10² kg/m³. Find the hydrostatic pressure difference between his head and his feet (g = 10 m/s²).",["1.65 × 10 Pa","1.65 × 10⁴ Pa","4.125 × 10² Pa","4.125 × 10¹⁴ Pa"],1],
+["Two lamps rated 40 W and 220 V each are connected in series across 220 V. The total power dissipated in both lamps is",["10 W","20 W","40 W","80 W"],1],
+["Three 5 Ω resistors connected in parallel have a potential difference of 60 V across the combination. The current in each resistor is",["4 A","12 A","24 A","10 A"],1],
+["A potential difference of 6 V is used to produce a current of 5 A for 200 s through a heating coil. The heat produced is",["4800 cal","6000 cal","2400 J","240 kcal","6000 J"],4],
+["A guitar string is 75 cm long. The wavelength of its fundamental note is",["75 cm","150 cm","37.5 cm","112.5 cm","50 cm"],1],
+["A herdsman yells to a fellow herdsman who hears his voice reflected by a cliff 4 s later. What is the velocity of sound in air if the cliff is 680 m away?",["170 m/s","136 m/s","680 m/s","340 m/s","510 m/s"],3],
+["An object 1 cm high is placed 15 cm from a converging lens and forms an image 30 cm from the lens. The size of the image is",["0.5 cm","1.5 cm","3 cm","2.5 cm","2 cm"],4],
+["Calculate the distance covered by a train before coming to rest if its initial speed is 30 m/s with a constant retardation of 0.1 m/s².",["5500 m","4500 m","4200 m","3000 m"],1],
+["An object moves in a circular path of radius 0.5 m with a speed of 1 m/s. What is its angular velocity?",["8 rad/s","4 rad/s","2 rad/s","1 rad/s"],2],
+["An object of mass 20 kg slides down an inclined plane at an angle of 30° to the horizontal. The coefficient of static friction is",["0.2","0.3","0.5","0.6"],3],
+["A guitar string 33 cm long is under a tension of 55 N. If the fundamental frequency is 196 Hz, find the speed of the wave on the string.",["6 m/s","0.33 m/s","129 m/s","726 m/s"],2],
+["A transformer has 400 turns in its primary winding and 100 turns as secondary winding. If the primary coil is connected to a 12 V source, the transformer functions as",["a step-down transformer with secondary emf = 6 V","a step-down transformer with secondary emf = 3 V","a step-up transformer with secondary emf = 24 V","a step-up transformer with secondary emf = 48 V"],1],
+["A battery of internal resistance 2 Ω has a terminal voltage of 4.0 V when supplying a current of 2.0 A. Calculate the terminal voltage if it now supplies a current of 3.0 A.",["2.0 V","6.0 V","1.5 V","12.0 V"],0],
+["The mass defect resulting from a thermonuclear reaction is 9.8 × 10⁻³⁰ kg. Calculate the energy released (c = 3 × 10⁸ m/s).",["2.94 × 10⁻²² J","8.82 × 10⁻²² J","8.82 × 10⁻¹³ J","8.82 × 10⁻¹⁴ J"],2],
+["A light source emits a wavelength of 640 nm in air. When passing through a liquid, the wavelength reduces to 490 nm. Calculate the refractive index of the liquid.",["1.2","1.50","1.33","1.31"],3],
+["In an adiabatic process there is",["no pressure change","no volume change","no temperature change","no heat exchange"],3],
+["The third harmonic frequency in a pipe closed at one end is 330 Hz. What is the frequency of the fundamental?",["110 Hz","220 Hz","330 Hz","660 Hz"],0],
+["The wave speed on a string is 12 m/s. What is the wavelength of a wave of frequency 3.0 Hz travelling on the string?",["3.0 m","4.0 m","9.0 m","15 m"],1],
+["An electron initially at rest is accelerated through an electric potential difference of 50.0 V. What is the kinetic energy of the electron?",["1.8 × 10⁻⁷ J","8.0 × 10⁻¹⁸ J","1.6 × 10⁻¹⁹ J","1.6 × 10⁻¹⁰ J"],1],
+["A proton has a speed of 4.5 × 10⁶ m/s perpendicular to a uniform magnetic field and moves in a circle of radius 0.20 m. What is the magnitude of the magnetic field? (m = 1.67 × 10⁻²⁷ kg)",["4.5 T","2.0 T","1.3 T","0.23 T"],3],
+["If an object O is 2.0 m in front of a plane mirror, the image of O will appear to be",["4.0 m from the mirror","6.0 m from the mirror","3.0 m from the mirror","2.0 m from the mirror"],3],
+["The focal length of a concave mirror is 10 cm. If an image is found 30 cm from the mirror, what is the distance of the object from the mirror?",["7.5 cm","15 cm","5.0 cm","20 cm"],1],
+["Calculate the magnifying power of a telescope having objective and eyepiece lenses of focal lengths 30 cm and 3.0 cm respectively, when focused for parallel rays.",["10","15","20","90"],0],
+["A cable with refractive index 1.50 is submerged in water (n = 1.33). The critical angle for light to stay inside the cable is",["62.50°","45.00°","27.60°","41.80°"],0],
+["Two parallel metal plates are 2.00 cm apart and the potential difference between them is 260 V. Find the electric field between them.",["1.30 × 10⁴ V/m","1.25 × 10³ V/m","0.20 × 10² V/m","2.60 × 10² V/m"],0],
+["An ideal transformer has 45 turns in the primary and 3 turns in the secondary. If the maximum input voltage is 6,000 V, what is the maximum output voltage?",["2,000 V","3,000 V","133.3 V","400 V"],3],
+["A positron (charge +e) and an electron are 10⁻¹³ m apart. The magnitude of the force of attraction between them is",["1.6 × 10⁻⁶ N","2.3 × 10⁻² N","3.2 × 10⁻² N","4.6 × 10⁻² N"],1],
+["A force of magnitude 60 N acts at 30° to the horizontal. If the force moves through a horizontal distance of 3 m, calculate the work done by the force.",["104 J","180 J","90 J","156 J"],3],
+["Calculate the increase in volume of 100 cm³ of mercury when its temperature changes from 15 °C to 40 °C. The volume co-efficient of expansion of mercury is 0.000180 °C⁻¹.",["4.5 cm³","45 cm³","0.45 cm³","0.045 cm³"],2],
+["A jumbo jet starts from rest with an acceleration of 3 m/s² and makes a run for 35 s before taking off. What is the minimum length of the runway and its velocity at take off?",["1838 m, 105 m/s","2000 m, 105 m/s","1838 m, 103 m/s","1000 m, 105 m/s"],0],
+["If in a simple pendulum experiment the length of the inextensible string is increased by a factor of four, its period is increased by a factor of",["4","π/2","¼","2π","2"],4],
+["A radioactive sample has a half-life of 4.0 min. What fraction of the sample is left after 20 min?",["1/32","1/25","1/16","1/5"],0],
+["A bullet of mass 2 g moving at 400 m/s strikes a wooden parcel and penetrates a distance of 5 cm before coming to rest. Calculate the retarding force.",["320 N","80 N","32000 N","3200 N"],3]]};
+const ORDER=[["English",20],["Mathematics",20],["Chemistry",15],["Physics",15]],MINS=45;
+let qs,ans,cur,end,tm,sub=0;
+const $=s=>document.querySelector(s),app=$("#app"),L="ABCDE";
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function home(){clearInterval(tm);$("#timer").hidden=true;
+app.innerHTML=`<div class="card"><h2>Practice Test</h2><p class="mut">${ORDER.map(([s,n])=>s+": "+Math.min(n,Q[s].length)).join(" • ")}<br>Time: ${MINS} minutes. Questions are drawn at random each attempt.</p><input id="nm" placeholder="Candidate name (optional)"><p><button class="btn" onclick="start()">Start Test</button></p></div>`}
+function start(){const nm=$("#nm")?$("#nm").value:"";window.cand=nm;qs=[];
+ORDER.forEach(([s,n])=>sh(Q[s]).slice(0,n).forEach(([q,o,a])=>{const idx=sh(o.map((_,i)=>i));qs.push({s,q,o:idx.map(i=>o[i]),a:idx.indexOf(a)})}));
+ans=qs.map(()=>-1);cur=0;end=Date.now()+MINS*6e4;$("#timer").hidden=false;tick();tm=setInterval(tick,500);draw()}
+function tick(){const r=Math.max(0,end-Date.now()),m=Math.floor(r/6e4),s=Math.floor(r%6e4/1e3),t=$("#timer");t.textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");t.className=r<5*6e4?"low":"";if(r<=0)finish()}
+function draw(){const q=qs[cur],subs=[...new Set(qs.map(x=>x.s))];
+app.innerHTML=`<div class="tabs">${subs.map(s=>`<button class="${s==q.s?"on":""}" onclick="cur=qs.findIndex(x=>x.s=='${s}');draw()">${s}</button>`).join("")}</div>
+<div class="card"><p class="mut">${q.s} — Question ${cur+1} of ${qs.length}</p><p class="q">${q.q}</p>${q.o.map((o,i)=>`<button class="opt ${ans[cur]==i?"sel":""}" onclick="ans[cur]=${i};draw()">${L[i]}. ${o}</button>`).join("")}</div>
+<div class="nav"><button class="btn g" ${cur?"":"disabled"} onclick="cur--;draw()">◀ Previous</button><button class="btn g" ${cur<qs.length-1?"":"disabled"} onclick="cur++;draw()">Next ▶</button></div>
+<div class="card"><div class="pal">${qs.map((_,i)=>`<button class="${ans[i]>=0?"an":""} ${i==cur?"cu":""}" onclick="cur=${i};draw()">${i+1}</button>`).join("")}</div><p class="mut">${ans.filter(x=>x>=0).length} of ${qs.length} answered</p><button class="btn r" onclick="if(confirm('Submit test now?'))finish()">Submit</button></div>`;scrollTo(0,0)}
+function finish(){clearInterval(tm);$("#timer").hidden=true;const by={};let tot=0;
+qs.forEach((q,i)=>{by[q.s]=by[q.s]||[0,0];by[q.s][1]++;if(ans[i]==q.a){by[q.s][0]++;tot++}});
+const pc=Math.round(tot/qs.length*100);
+app.innerHTML=`<div class="card"><p class="mut">${window.cand||"Candidate"}</p><div class="big">${tot} / ${qs.length} (${pc}%)</div>${Object.entries(by).map(([s,[a,b]])=>`<p>${s}: <b>${a}/${b}</b></p>`).join("")}<button class="btn" onclick="home()">Take another test</button></div><h3>Corrections</h3>`+
+qs.map((q,i)=>`<div class="card"><p class="mut">${i+1}. ${q.s} — ${ans[i]==q.a?"✓ Correct":ans[i]<0?"✗ Not answered":"✗ Wrong"}</p><p class="q">${q.q}</p>${q.o.map((o,j)=>`<div class="opt ${j==q.a?"ok":j==ans[i]?"bad":""}">${L[j]}. ${o}${j==q.a?" ✓":j==ans[i]?" (your answer)":""}</div>`).join("")}</div>`).join("")+`<button class="btn" onclick="home()">Take another test</button>`;scrollTo(0,0)}
+home();
+</script></body></html>
